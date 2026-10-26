@@ -14,41 +14,88 @@ def page(path, key, title, desc, body, crumbs=None, three=False, main_artifact=F
     depth = path.count("/")
     root = "../" * depth
     attrs = f'data-page="{key}" data-root="{root}"' + (f" data-crumbs='{crumbs}'" if crumbs else "")
-    canonical = f'<link rel="canonical" href="https://semil.in/{"index.html" if path == "" else path}">'
+    clean_path = "" if path in ("index.html", "") else (path[:-5] if path.endswith(".html") else path)
+    page_url = f"https://semil.in/{clean_path}" if clean_path else "https://semil.in/"
+    canonical = f'<link rel="canonical" href="{page_url}">'
     meta_seo = (
-        f'<meta name="robots" content="index, follow">\n'
+        f'<meta name="google-site-verification" content="YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE">\n'
+        f'<meta name="title" content="{e(title)} | Semil">\n'
+        f'<meta name="keywords" content="Semil Retail Industries, digital commerce, multi-vendor marketplace, food delivery, logistics services, matchmaking platform, fintech, retail ecosystem">\n'
         f'<meta name="author" content="Semil Retail Industries Private Limited">\n'
+        f'<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">\n'
+        f'<meta name="theme-color" content="#315EFB">\n'
         f'<meta property="og:type" content="website">\n'
         f'<meta property="og:site_name" content="Semil Retail Industries">\n'
+        f'<meta property="og:url" content="{page_url}">\n'
+        f'<meta property="og:image" content="https://semil.in/og-image.png">\n'
+        f'<meta property="og:image:width" content="1200">\n'
+        f'<meta property="og:image:height" content="630">\n'
+        f'<meta property="og:image:alt" content="{e(title)} - Semil Retail Industries">\n'
+        f'<meta property="og:locale" content="en_IN">\n'
         f'<meta name="twitter:card" content="summary_large_image">\n'
-        f'<meta name="twitter:title" content="{e(title)}">\n'
+        f'<meta name="twitter:title" content="{e(title)} | Semil">\n'
         f'<meta name="twitter:description" content="{e(desc)}">\n'
+        f'<meta name="twitter:image" content="https://semil.in/og-image.png">\n'
+        f'<meta name="twitter:image:alt" content="{e(title)} - Semil Retail Industries">\n'
         f'{canonical}'
     )
-    schema_ld = """<script type="application/ld+json">
-{
+    schema_ld = f"""<script type="application/ld+json">
+{{
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Semil Retail Industries Private Limited",
-  "alternateName": "Semil",
-  "url": "https://semil.in",
-  "description": "Building a diverse ecosystem of businesses across digital commerce, food delivery, matchmaking, logistics and financial technology.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "101/57 A, Kalidhasar Street, Narayanan Nagar",
-    "addressLocality": "Salem",
-    "addressRegion": "Tamil Nadu",
-    "postalCode": "636015",
-    "addressCountry": "IN"
-  },
-  "identifier": {
-    "@type": "PropertyValue",
-    "name": "CIN",
-    "value": "U47912TZ2025PTC035227"
-  }
-}
+  "@graph": [
+    {{
+      "@type": "Organization",
+      "@id": "https://semil.in/#organization",
+      "name": "Semil Retail Industries Private Limited",
+      "alternateName": "Semil",
+      "url": "https://semil.in",
+      "logo": "https://semil.in/logo.png",
+      "description": "Building a diverse ecosystem of businesses across digital commerce, food delivery, matchmaking, logistics and financial technology.",
+      "address": {{
+        "@type": "PostalAddress",
+        "streetAddress": "101/57 A, Kalidhasar Street, Narayanan Nagar",
+        "addressLocality": "Salem",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "636015",
+        "addressCountry": "IN"
+      }},
+      "identifier": {{
+        "@type": "PropertyValue",
+        "name": "CIN",
+        "value": "U47912TZ2025PTC035227"
+      }}
+    }},
+    {{
+      "@type": "WebApplication",
+      "@id": "https://semil.in/#webapp",
+      "name": "Semil Portal & Ecosystem Platform",
+      "url": "https://semil.in",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All modern browsers",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description": "Multi-business corporate portfolio and interactive portal featuring business discovery, logistics route exploration, payment gateway flow concepts, and Semil AI assistant.",
+      "offers": {{
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }},
+      "provider": {{
+        "@id": "https://semil.in/#organization"
+      }}
+    }},
+    {{
+      "@type": "WebSite",
+      "@id": "https://semil.in/#website",
+      "url": "https://semil.in",
+      "name": "Semil Retail Industries",
+      "publisher": {{
+        "@id": "https://semil.in/#organization"
+      }}
+    }}
+  ]
+}}
 </script>"""
-    head = f'<title>{e(title)}</title>\n<meta name="description" content="{e(desc)}">\n<meta property="og:title" content="{e(title)}">\n<meta property="og:description" content="{e(desc)}">\n{meta_seo}\n{schema_ld}\n{FONT}\n<link rel="stylesheet" href="{root}site.css"><link rel="stylesheet" href="{root}ai.css">'
+    head = f'<title>{e(title)} | Semil</title>\n<meta name="description" content="{e(desc)}">\n<meta property="og:title" content="{e(title)} | Semil">\n<meta property="og:description" content="{e(desc)}">\n{meta_seo}\n{schema_ld}\n{FONT}\n<link rel="stylesheet" href="{root}site.css"><link rel="stylesheet" href="{root}ai.css">'
     scripts = f'<script type="module" src="{root}firebase-init.js"></script>\n<script src="{root}site.js"></script><script src="{root}fx.js"></script><script src="{root}games.js"></script><script src="{root}ai.js"></script>'
     if main_artifact:
         # variant for hosts that wrap the page in their own skeleton (published preview)

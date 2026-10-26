@@ -1,5 +1,12 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Disallow internal scripts, templates, and backend resources
+Disallow: /server/
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /private/
+Disallow: /*_wrapped_index.html
+
+# Sitemap
 Sitemap: https://semil.in/sitemap.xml
