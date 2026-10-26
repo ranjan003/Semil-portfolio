@@ -232,7 +232,7 @@ function build(){
         const r=await fetch(CFG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...d,source:'semil-ai'})});if(!r.ok)throw 0;
       }
       st.className='sai-fs ok';st.textContent='Sent. Thank you, the team will reply by email.';f.reset()}
-    catch(_){st.className='sai-fs err';st.textContent='Could not send. Please check your connection and try again.';btn.disabled=false}})}
+    catch(err){console.error('AI form submission failed:', err);st.className='sai-fs err';st.textContent='Could not send. Please check your connection and try again.';btn.disabled=false}})}
 
   function renderQuality(){
     const avg=M.q?Math.round(M.ms/M.q):0,rate=x=>M.q?Math.round(100*x/M.q)+'%':'n/a';

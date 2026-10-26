@@ -439,6 +439,7 @@ function forms(){
         }
         stat.className='fstat show ok';stat.textContent='Thank you. Your message has been sent successfully.';form.reset();
       }catch(err){
+        console.error('Form submission failed:', err);
         stat.className='fstat show err';
         stat.textContent=err.message==='not-configured'?'Your details are valid, but the database connection is not initialized yet.':'Your message could not be sent. Please check your connection and try again.';
       }
