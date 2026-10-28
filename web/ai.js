@@ -39,6 +39,21 @@ const KB=[];
   add('time','Company timeline',S.timeline.map(t=>t.d+': '+t.t+(t.p?'. '+t.p:'')).join(' '),'about.html');
   add('road','Roadmap',S.roadmap.map(r=>r.stage+': '+(r.items.length?r.items.map(i=>i.n).join(', '):'nothing confirmed yet')).join('. '),'upcoming-projects.html');
   add('contact','Contact',`Registered office: ${c.address.join(', ')}. The official email is admin@semilindustries.com. Enquiries can also be sent through the contact form.`,'contact.html');
+
+  // Strategy Report (2026–2035) Knowledge
+  add('strat-priorities','Group Strategy & Priorities','Semil Group Strategy (2026–2035) recommended priority order: 1. Stabilise Neutags and build B2B merchant commerce on its seller base first. 2. Pilot logistics and matrimony at small scale in Tamil Nadu. 3. Delay full food-delivery launch and any payment gateway until unit economics and licensing are clear. Operating data (revenue, GMV, costs) is not yet published.','upcoming-projects.html');
+  add('strat-top5','Top 5 Upcoming Projects','Ranked 5 most promising upcoming projects: 1. B2B merchant commerce on Neutags (largest pool, $90–100B GMV by 2030). 2. Seller management and retail SaaS (low capital, high reuse). 3. Logistics fulfilment for Semil platforms (shared hubs reduce cost per order). 4. AI shopping and operations agents (internal search & support first). 5. Quick commerce & hyperlocal delivery (defer to 2028+). Payment gateway is deferred pending RBI licensing.','upcoming-projects.html');
+  add('strat-neutags','Neutags Unit Economics & Commission','Neutags unit economics assumes 3–4% commission for products below ₹800 and 5–7% above ₹800 (illustrative blended take rate ~4.0–5.5%). On ₹100 crore GMV, this yields ₹3–7 crore revenue. Compared to Meesho FY25–FY26 where revenue is 18–19% of GMV (including ads, fees, and logistics), Neutags will need additional revenue streams beyond pure commission.','businesses/neutags.html','neutags');
+  add('strat-food','Semil Food Delivery & Kichin Strategy','Semil Food Delivery (referenced as Kichin in strategic briefs) addresses India online food delivery forecast at ₹2.12 lakh crore by 2030 (18% CAGR, Bain & Swiggy). Due to high capital intensity and competition with Swiggy and Zomato, recommendation is to delay full launch and run a measured single-city pilot in Tamil Nadu.','businesses/food-delivery.html','food');
+  add('strat-logistics','Semil Logistical Services Strategy','Semil Logistical Services addresses Indian 3PL forecast at $53.6 billion by 2030 (Ken Research) and express logistics forecast at $18–22 billion by FY30 (KPMG). Strategy: start with internal Semil platform parcel volume to build hub utilisation, then open to outside commercial merchants in Phase 3.','businesses/logistics.html','logistics');
+  add('strat-matrimony','Semil Matrimony Strategy & DPDP Act','Semil Matrimony addresses India online matrimony market forecast at ₹2,300–2,500 crore by 2030 (Redseer). Strategy: pilot in Tamil Nadu with a verification-first approach compliant with India Digital Personal Data Protection (DPDP) Act 2023, consent records, and strict data minimisation.','businesses/matrimony.html','matrimony');
+  add('strat-payments','Semil Payment Gateway Strategy & RBI','Semil Payment Gateway addresses India payment gateway market ($3.1–3.2 billion by 2030). Strategy: partner with licensed banks and authorized payment aggregators rather than seeking an immediate own RBI license, avoiding premature compliance capital until volume warrants it.','upcoming-projects/payment-gateway.html','payments');
+  add('strat-ai-platform','Generative Commerce AI & Talent Discovery','Generative Commerce AI: build internally for search, customer support, and catalog efficiency on Neutags first, before exploring external API pricing. Semil Talent Discovery: an internal recruitment and talent matching prototype, not a market-facing commercial revenue product.','company.html');
+  add('strat-markets','Market Size Forecasts (2026–2035)','Sourced India market forecasts: E-commerce: $250B–$363B by 2030 (Mordor / Deloitte). B2B e-commerce GMV: $90–$100B by 2030 at 40–45% CAGR (Redseer). Food delivery: ₹2.12 lakh crore ($27B) by 2030 at 18% CAGR (Bain/Swiggy). 3PL logistics: $53.6B by 2030 (Ken Research). Online matrimony: ₹2,300–2,500 crore by 2030 (Redseer). Payment gateways: $3.1–3.2B by 2030 (TechSci/Mordor). Quick commerce: 16–17% share of e-commerce.','company.html');
+  add('strat-roadmap','10-Year Execution Roadmap & Stage Gates','Semil 10-Year Roadmap: Phase 1 (2026–27): Stabilise Neutags, confirm take rate, launch B2B merchant pilot (Gate: positive contribution per order for 3 consecutive months). Phase 2 (2027–28): Single-city food delivery pilot, shared logistics, Tamil Nadu matrimony pilot. Phase 3 (2028–30): Scale proven pilots, paid seller SaaS, external logistics clients. Phase 4 (2030–35): Group-level national scale and audited consolidation.','upcoming-projects.html');
+  add('strat-risks','Risks, Governance & Mitigation','Group risks and mitigations: Cash burn (fund one venture at a time with stage-gate milestones; Meesho FY25 loss illustrates burn speed). Acquisition costs (measure CAC and repeat rates from month 1). Delivery ops (single-city pilot measuring on-time rate). Payments (licensed bank partners). Data protection (DPDP Act 2023 compliance for matrimony). Governance: monthly management accounts and named risk owners.','company.html');
+  add('strat-valuation','Valuation & Financial Governance','Semil does not publish a speculative valuation. A defensible valuation requires audited financials, multi-year operating history, and documented discount rates. Valuation exercises will be conducted on audited accounts once 2030 operating milestones are achieved.','company.html');
+  add('strat-brand','Brand Architecture & Visual Identity','Brand architecture: Semil is the parent group; Neutags, Semil Food Delivery (Kichin), Semil Matrimony, and Semil Logistical Services are operating brands. AI and logistics operate as shared group services. Brand colors: Electric purple (#A855F7), Deep violet (#7E22CE), Soft lavender (#DCC0FF), Pale lavender (#F3E8FF), Jet black (#111111), and White (#FFFFFF).','about.html');
 })();
 const STOP=new Set('a an the is are was were be to of in on for and or with what who how do does did can i me my you your it its this that about tell please semil s at as by from have has will would should about any there their'.split(' '));
 const tok=s=>(s.toLowerCase().match(/[a-z0-9]+/g)||[]).filter(w=>!STOP.has(w)).map(w=>w.replace(/(ing|ed|es|s)$/,''));
@@ -50,7 +65,7 @@ function retrieve(q,n=4){
 }
 
 /* ---------- tools (the only functions the assistant may call) ---------- */
-const ALIAS={neutags:/neutag|marketplace|e-?commerce|multi-?vendor|online shop|shop(ping)?\b/,food:/food|restaurant|meal|menu/,matrimony:/matrimon|marriage|matchmak|bride|groom|\bmatch(es)?\b/,
+const ALIAS={neutags:/neutag|marketplace|e-?commerce|multi-?vendor|online shop|shop(ping)?\b/,food:/food|restaurant|meal|menu|kichin/,matrimony:/matrimon|marriage|matchmak|bride|groom|\bmatch(es)?\b/,
   logistics:/logistic|transport|supply.?chain|parcel|shipping|courier|delivery operations/,payments:/payment|gateway|fintech|financial|payout|merchant services/};
 const tools={
   get_company_profile:()=>S.company,
@@ -74,7 +89,9 @@ const R={
     return `<div class="sai-tablewrap"><table class="sai-table"><thead><tr><th></th>${bs.map(b=>`<th>${esc(b.name)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr><th>${r[0]}</th>${bs.map(b=>`<td>${r[1](b)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`},
   eco:()=>{const n=S.businesses,cx=150,cy=100,pts=n.map((_,i)=>{const a=-Math.PI/2+i*2*Math.PI/n.length;return[cx+Math.cos(a)*92*1.35,cy+Math.sin(a)*72]});
     return `<svg class="sai-eco" viewBox="0 0 300 200" role="img" aria-label="Semil at the centre of its businesses">${pts.map(p=>`<line x1="${cx}" y1="${cy}" x2="${p[0]}" y2="${p[1]}"/>`).join('')}<circle class="hub" cx="${cx}" cy="${cy}" r="22"/><text x="${cx}" y="${cy+3}" text-anchor="middle" class="hubt">Semil</text>${pts.map((p,i)=>`<a href="${url(n[i].href)}"><circle class="nd" cx="${p[0]}" cy="${p[1]}" r="9"/><text x="${p[0]}" y="${p[1]+(p[1]>cy?22:-14)}" text-anchor="middle">${esc(n[i].name.replace('Semil ',''))}</text></a>`).join('')}</svg>`},
-  enquiry:cat=>`<form class="sai-form" novalidate><p class="sai-t">Send an enquiry</p><input name="name" placeholder="Your name" maxlength="80" required aria-label="Your name"><input name="email" type="email" placeholder="Email" maxlength="120" required aria-label="Email"><select name="category" aria-label="Enquiry type">${['General corporate enquiry','Business partnership','Technology partnership','Seller or merchant enquiry','Careers','Other enquiries'].map(o=>`<option${o===cat?' selected':''}>${o}</option>`).join('')}</select><textarea name="message" placeholder="Your message" maxlength="1000" required aria-label="Message"></textarea><input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="sai-fs" role="status" aria-live="polite"></div><button type="submit">Review and send</button><p class="sai-fine">Nothing is sent until you press the button.</p></form>`
+  enquiry:cat=>`<form class="sai-form" novalidate><p class="sai-t">Send an enquiry</p><input name="name" placeholder="Your name" maxlength="80" required aria-label="Your name"><input name="email" type="email" placeholder="Email" maxlength="120" required aria-label="Email"><select name="category" aria-label="Enquiry type">${['General corporate enquiry','Business partnership','Technology partnership','Seller or merchant enquiry','Careers','Other enquiries'].map(o=>`<option${o===cat?' selected':''}>${o}</option>`).join('')}</select><textarea name="message" placeholder="Your message" maxlength="1000" required aria-label="Message"></textarea><input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="sai-fs" role="status" aria-live="polite"></div><button type="submit">Review and send</button><p class="sai-fine">Nothing is sent until you press the button.</p></form>`,
+  ranked:items=>`<ol class="sai-list" style="list-style:decimal;padding-left:18px">${items.map(i=>`<li style="margin-bottom:8px"><b>${esc(i[0])}</b>: ${esc(i[1])}</li>`).join('')}</ol>`,
+  tableSimple:(headers,rows)=>`<div class="sai-tablewrap"><table class="sai-table"><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,ci)=>ci===0?`<th>${esc(c)}</th>`:`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`
 };
 
 /* ---------- pipeline ---------- */
@@ -107,9 +124,171 @@ function answer(q){
   const done=(o,intent)=>{Object.assign(out,o,{intent});return out};
 
   if(/^(hi|hello|hey|namaste|good (morning|afternoon|evening))\b/.test(l)&&l.length<30)
-    return finish(done({html:`<p>Hello. I can answer questions about Semil, its businesses and its leadership, using only what the company has confirmed on this site.</p>`,chips:['Give me an overview','Compare the businesses','Who are the directors?']},'greeting'));
-  if(/revenue|turnover|profit|funding|valuation|investor|salary|salaries|employees|headcount|how many (customers|users|sellers)|market share|share price|net worth/.test(l))
-    return finish(done({html:`<p>Semil has not published that information, so I won't guess. This site only states what the company has confirmed.</p>`,chips:['Company details','How can I contact Semil?']},'unpublished'));
+    return finish(done({html:`<p>Hello. I can answer questions about Semil, its businesses and its leadership, using only what the company has confirmed on this site.</p>`,chips:['Give me an overview','Group strategy','Top 5 upcoming projects','Who are the directors?']},'greeting'));
+
+  /* Group Strategy Report (2026–2035) specialist intents */
+  if(/strateg|priorit|execution order|order of execution|master plan|what is the plan|game plan/.test(l)){
+    return finish(done({
+      html:`<p><b>Semil Group Strategy (2026–2035)</b> prioritises disciplined, stage-gated growth across four key recommendations:</p>`+
+        R.ranked([
+          ['1. Prioritise Neutags','Stabilise the core marketplace and build merchant (B2B) commerce on its seller base first.'],
+          ['2. Pilot Logistics & Matrimony','Launch small-scale, verification-first pilots in Tamil Nadu (matrimony strictly under DPDP Act 2023; logistics starting with internal Semil platform volume).'],
+          ['3. Delay Food Delivery (Kichin)','Defer full rollout until restaurant unit economics and order density are proven in a single Tamil Nadu city pilot.'],
+          ['4. Delay Own Payment Gateway License','Partner with an authorized bank or licensed payment aggregator rather than funding premature compliance and settlement capital.']
+        ])+`<p class="sai-note">Operating financials (revenue, GMV, costs) are not published. Semil funds one venture at a time with strict stage gates.</p>`,
+      src:[{t:'Upcoming projects',h:'upcoming-projects.html'},{t:'About',h:'about.html'}],
+      tr:['Specialist: strategy report lookup'],
+      chips:['Top 5 upcoming projects','10-year roadmap','Market forecasts','Neutags unit economics']
+    },'strategy'));
+  }
+
+  if(/(top|promising|best|ranked).*(projects?|initiatives?)|what are the (top|upcoming) projects/.test(l)){
+    return finish(done({
+      html:`<p>The <b>Five Most Promising Upcoming Projects</b> ranked in the Semil Strategy Report:</p>`+
+        R.ranked([
+          ['1. B2B Merchant Commerce on Neutags','The largest market pool ($90–100B GMV by 2030), building directly on the existing seller base.'],
+          ['2. Seller Management & Retail SaaS','Low capital intensity, highly reusable across Semil businesses, and tied to seller demand.'],
+          ['3. Logistics Fulfilment for Semil Platforms','Shared hubs cut per-order costs across Neutags and food delivery (addressing the $53.6B 3PL market).'],
+          ['4. AI Shopping & Operations Agents','Internal efficiency first: search, customer support, and catalog automation before external API monetization.'],
+          ['5. Quick Commerce & Hyperlocal Delivery','Fast-growing segment (16–17% of e-commerce), but capital-intensive; deferred to 2028 or later.']
+        ])+`<p class="sai-note">Payment gateway is deferred pending RBI licensing and banking partnerships.</p>`,
+      src:[{t:'Upcoming projects',h:'upcoming-projects.html'}],
+      tr:['Specialist: top 5 projects lookup'],
+      chips:['10-year roadmap','Group strategy','Market forecasts']
+    },'top5'));
+  }
+
+  if(/10.?year|2026.?2035|phases?|roadmap phases|milestones by 2030|go.?no.?go/.test(l)&&!topic){
+    return finish(done({
+      html:`<p><b>Semil 10-Year Execution Roadmap (2026–2035)</b> is structured in four disciplined phases with go/no-go gates:</p>`+
+        R.ranked([
+          ['Phase 1: 2026–27 (Strengthen Neutags)','Confirm effective take rate, publish live marketplace KPIs, and pilot B2B merchant commerce. Go/no-go test: positive contribution per order for 3 consecutive months in the pilot category.'],
+          ['Phase 2: 2027–28 (Validate & Expand)','Single-city food delivery pilot in Tamil Nadu, shared logistics for internal Semil orders, internal AI search, and DPDP-compliant matrimony pilot.'],
+          ['Phase 3: 2028–30 (Scale Proven Models)','Scale passing city pilots, paid seller SaaS tier, external logistics clients, and partner-led payments. Scale capital released only after 4 quarters of stable unit economics.'],
+          ['Phase 4: 2030–35 (Group-Level Scale)','National footprint in winning categories, shared AI/logistics group infrastructure, and audited accounts for formal valuation.']
+        ]),
+      src:[{t:'Upcoming projects',h:'upcoming-projects.html'}],
+      tr:['Specialist: execution roadmap lookup'],
+      chips:['Group strategy','Top 5 upcoming projects','Risks and governance']
+    },'roadmap10'));
+  }
+
+  if(/market (size|forecast|growth|potential)|tam\b|sam\b|som\b|how big is (the|each) market|industry size/.test(l)){
+    return finish(done({
+      html:`<p><b>India Market Size Forecasts (2026–2035)</b> from the Semil Strategy Report source register:</p>`+
+        R.tableSimple(
+          ['Venture / Sector','Sourced Forecast','Growth / Source'],
+          [
+            ['B2B E-Commerce GMV','$90–100 Billion by 2030','40–45% CAGR (Redseer)'],
+            ['Online Food Delivery','₹2.12 Lakh Crore ($27B) by 2030','18% CAGR (Bain & Swiggy)'],
+            ['Third-Party Logistics (3PL)','$53.6 Billion by 2030','8.4% CAGR (Ken Research)'],
+            ['Express Logistics','$18–22 Billion by FY30','12–15% CAGR (KPMG)'],
+            ['Online Matrimony','₹2,300–2,500 Crore by 2030','10–12% CAGR (RedSeer)'],
+            ['Payment Gateway','$3.1–3.2 Billion by 2030','8.7–17.2% CAGR (TechSci / Mordor)'],
+            ['Total India E-Commerce','$250–363 Billion by 2030','11.5–21.5% CAGR (Deloitte / Mordor)']
+          ]
+        )+`<p class="sai-note">Forecasts use different scopes and definitions; rows are not additive.</p>`,
+      src:[{t:'Company details',h:'company.html'}],
+      tr:['Specialist: market sizing lookup'],
+      chips:['Neutags unit economics','Top 5 upcoming projects','Group strategy']
+    },'markets'));
+  }
+
+  if(/unit economic|commission|take rate|pricing model|how does neutags make money|meesho/.test(l)){
+    return finish(done({
+      html:`<p><b>Neutags Unit Economics & Commission Model:</b></p>`+
+        `<p>Management models a tiered commission: <b>3–4%</b> for items below ₹800 and <b>5–7%</b> for items above ₹800 (illustrative blended take rate of ~4.0–5.5%).</p>`+
+        R.tableSimple(
+          ['Commission Rate','Revenue on ₹100 Cr GMV'],
+          [['3%','₹3 Crore'],['4%','₹4 Crore'],['5%','₹5 Crore'],['6%','₹6 Crore'],['7%','₹7 Crore']]
+        )+
+        `<p><b>Meesho Comparison:</b> Meesho reported FY25 revenue at 18.7% of GMV and FY26 at 17.9% of GMV because it includes advertising, seller services, and logistics fees. A pure 3–7% commission model on Neutags will require supplementary revenue streams (ads and retail SaaS) to achieve sustainable unit economics.</p>`,
+      src:[{t:'Neutags',h:'businesses/neutags.html'}],
+      tr:['Specialist: unit economics lookup'],
+      chips:['Tell me about Neutags','Top 5 upcoming projects','Market forecasts']
+    },'economics'));
+  }
+
+  if(/valuation|market cap|how much is semil (worth|valued)|what is (the )?valuation/.test(l)){
+    return finish(done({
+      html:`<p><b>Valuation is not published or estimated.</b></p><p>A defensible valuation requires multi-year financial statements, documented unit economics, and formal discount rates—none of which are currently published. The Strategy Report specifies that any figure created today would be purely invented, and formal valuation should wait until the 2030 execution milestones are audited.</p>`,
+      src:[{t:'Company details',h:'company.html'}],
+      tr:['Specialist: valuation policy lookup'],
+      chips:['10-year roadmap','Group strategy','What is Semil revenue?']
+    },'valuation'));
+  }
+
+  if(/risk|mitigat|governance|dpdp|data protection|cash burn|compliance|fraud/.test(l)){
+    return finish(done({
+      html:`<p><b>Semil Risks & Governance Framework:</b></p>`+
+        R.ranked([
+          ['Cash Burn Across Ventures','Meesho\'s ₹3,942 Cr FY25 net loss highlights marketplace burn. Mitigation: fund one venture at a time with strict stage gates.'],
+          ['Customer & Seller Acquisition Cost','Marketplace growth relies on paid CAC. Mitigation: track cost per acquired seller and 30-day repeat rates from month 1.'],
+          ['Delivery & Rider Operations','Delays and returns impact food and logistics. Mitigation: single-city Tamil Nadu pilot measuring on-time delivery rates.'],
+          ['Payment Regulations','Aggregator licensing requires RBI approval. Mitigation: partner with licensed banking partners before pursuing an own license.'],
+          ['Personal Data in Matrimony','Sensitive matrimonial profile data. Mitigation: full compliance with India\'s Digital Personal Data Protection (DPDP) Act 2023, consent logs, and data minimisation.']
+        ])+`<p class="sai-note">Governance: monthly management accounts, intercompany transfer pricing, and named risk owners.</p>`,
+      src:[{t:'Company details',h:'company.html'}],
+      tr:['Specialist: risk and governance lookup'],
+      chips:['10-year roadmap','Group strategy','Market forecasts']
+    },'risks'));
+  }
+
+  if(/\bkichin\b/.test(l)){
+    return finish(done({
+      html:`<p><b>Kichin</b> is the internal development name for <b>Semil Food Delivery</b>.</p><p>It is a planned platform designed to connect consumers, local restaurants, and delivery riders. The strategy report recommends a cautious single-city pilot in Tamil Nadu to measure restaurant economics before any full-scale multi-city rollout.</p>`,
+      src:[{t:'Semil Food Delivery',h:'businesses/food-delivery.html'}],
+      tr:['Specialist: Kichin alias lookup'],
+      chips:['Tell me about Semil Food Delivery','Market forecasts','Top 5 upcoming projects']
+    },'kichin'));
+  }
+
+  if(/generative commerce|talent discovery|internal hiring|hiring tool|ai agent|ai shopping|ai platform/.test(l)){
+    return finish(done({
+      html:`<p><b>Semil AI Initiatives:</b></p>`+
+        R.ranked([
+          ['Generative Commerce AI','AI agents for shopping, internal catalog operations, search, and automated customer support. Priority: build internally on Neutags first, then evaluate commercial external APIs once proven.'],
+          ['Semil Talent Discovery','An internal recruitment and talent matching prototype to streamline hiring for Semil teams. It is not a commercial, revenue-generating product.']
+        ]),
+      src:[{t:'Company details',h:'company.html'}],
+      tr:['Specialist: internal AI tools lookup'],
+      chips:['Top 5 upcoming projects','Group strategy','Tell me about Neutags']
+    },'ai_initiatives'));
+  }
+
+  if(/brand architecture|visual system|brand color|palette|electric purple/.test(l)){
+    return finish(done({
+      html:`<p><b>Semil Brand Architecture & Visual System:</b></p>`+
+        `<p><b>Architecture:</b> Semil Retail Industries is the parent holding identity. Neutags, Semil Food Delivery (Kichin), Semil Matrimony, and Semil Logistical Services are operating brands. AI and logistics operate as shared group services.</p>`+
+        `<p><b>Visual Palette:</b> Electric purple (#A855F7, primary accent), Deep violet (#7E22CE), Soft lavender (#DCC0FF), Pale lavender (#F3E8FF), Jet black (#111111), and White (#FFFFFF).</p>`,
+      src:[{t:'About',h:'about.html'}],
+      tr:['Specialist: brand architecture lookup'],
+      chips:['Core values','Group strategy','Overview']
+    },'brand'));
+  }
+
+  if(/\bkpis?\b|metrics?|dashboard|how (do you|is) (track|measure)/.test(l)){
+    return finish(done({
+      html:`<p><b>Semil KPI Monitoring Framework:</b></p>`+
+        R.tableSimple(
+          ['Venture','Key Metrics Tracked'],
+          [
+            ['Neutags','Active sellers/buyers, GMV, effective take rate, contribution per order, repeat rate, return rate'],
+            ['Food Delivery','Orders per restaurant per day, cost per order, rider utilisation, on-time delivery rate'],
+            ['Matrimony','Verified profiles, paid conversion rate, 3-month subscriber retention'],
+            ['Logistics','Hub utilisation %, cost per parcel, on-time delivery rate'],
+            ['Payments','Total Payment Volume (TPV), authorization success rate, chargeback rate'],
+            ['AI Platform','Share of sessions using AI search, conversion uplift vs control group, automated resolution rate']
+          ]
+        ),
+      src:[{t:'Company details',h:'company.html'}],
+      tr:['Specialist: KPI framework lookup'],
+      chips:['10-year roadmap','Group strategy','Neutags unit economics']
+    },'kpi'));
+  }
+
+  if(/revenue|turnover|profit|funding|investor|salary|salaries|employees|headcount|how many (customers|users|sellers)|market share|share price|net worth/.test(l))
+    return finish(done({html:`<p>Semil has not published operating financials, revenue, GMV, or headcount figures. This site states only what the company has officially confirmed.</p>`,src:[{t:'Company details',h:'company.html'}],chips:['Neutags unit economics','Group strategy','How can I contact Semil?']},'unpublished'));
   if(/authori[sz]ed|licen[sc]e|\brbi\b|regulat|pa-?pg/.test(l)&&(ids.includes('payments')||/payment|gateway/.test(l)))
     {const r=forBusiness('payments','faq');ctx.last='payments';return finish(done({html:`<p>${esc(S.detail.payments.faq[0][1])}</p><p class="sai-note">Subject to applicable regulatory requirements, approvals and partnerships.</p>`,src:r.src,tr:['Specialist: regulatory FAQ lookup'],chips:['Tell me about the Payment Gateway','Upcoming projects']},'regulatory'))}
   if(/\bcin\b|incorporat|founded|established|when (was|did)|history|timeline|milestone/.test(l)&&!ids.length)
@@ -258,7 +437,11 @@ const GOLD=[
  ['What is Neutags?','marketplace'],['Is Semil an authorised payment operator?','does not claim'],['Who are the directors?','Sriram Sanjay Santhakumar'],
  ['What is the CIN?','U47912TZ2025PTC035227'],['Compare Food Delivery and Matrimony','Semil Matrimony'],['What is Semil revenue?','not published'],
  ['Has Semil Food Delivery launched?','not launched'],['Who is it for?','Customers'],['Where is the registered office?','Kalidhasar'],['How does logistics work?','journey'],
- ['Tell me about the weather on Mars','confirmed information']];
+ ['Tell me about the weather on Mars','confirmed information'],
+ ['What is Semil group strategy?','Prioritise Neutags'],['What are the top upcoming projects?','B2B Merchant Commerce'],
+ ['What is the 10-year execution roadmap?','Phase 1'],['What is the food delivery market size?','lakh crore'],
+ ['What are Neutags unit economics?','commission'],['What is Kichin?','food delivery'],
+ ['What is Semil valuation?','not published'],['What are the brand colors?','Electric purple']];
 function selfTest(){const save={...ctx};ctx.last=null;let pass=0;const fail=[];
   GOLD.forEach(g=>{ctx.last=g[0]==='Who is it for?'?'food':null;const r=answer(g[0]);if(r.html.toLowerCase().includes(g[1].toLowerCase())||(g[1]==='journey'&&r.html.includes('sai-steps')))pass++;else fail.push(g[0])});
   Object.assign(ctx,save);return{pass,total:GOLD.length,fail}}
