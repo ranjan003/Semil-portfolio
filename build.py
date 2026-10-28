@@ -3,6 +3,7 @@
 import os, html
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web")
+VER = "?v=2.2"
 FONT = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">'
 THREE = '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>'
 e = html.escape
@@ -96,8 +97,8 @@ def page(path, key, title, desc, body, crumbs=None, three=False, main_artifact=F
   ]
 }}
 </script>"""
-    head = f'<title>{e(title)} | Semil</title>\n<meta name="description" content="{e(desc)}">\n<meta property="og:title" content="{e(title)} | Semil">\n<meta property="og:description" content="{e(desc)}">\n{meta_seo}\n{schema_ld}\n{FONT}\n<link rel="stylesheet" href="{root}site.css"><link rel="stylesheet" href="{root}ai.css">'
-    scripts = f'<script type="module" src="{root}firebase-init.js"></script>\n<script src="{root}site.js"></script><script src="{root}fx.js"></script><script src="{root}games.js"></script><script src="{root}ai.js"></script>'
+    head = f'<title>{e(title)} | Semil</title>\n<meta name="description" content="{e(desc)}">\n<meta property="og:title" content="{e(title)} | Semil">\n<meta property="og:description" content="{e(desc)}">\n{meta_seo}\n{schema_ld}\n{FONT}\n<link rel="stylesheet" href="{root}site.css{VER}"><link rel="stylesheet" href="{root}ai.css{VER}">'
+    scripts = f'<script type="module" src="{root}firebase-init.js{VER}"></script>\n<script src="{root}site.js{VER}"></script><script src="{root}fx.js{VER}"></script><script src="{root}games.js{VER}"></script><script src="{root}ai.js{VER}"></script>'
     if main_artifact:
         # variant for hosts that wrap the page in their own skeleton (published preview)
         pre = f"<script>document.body.dataset.page='{key}';document.body.dataset.root='{root}';</script>"
