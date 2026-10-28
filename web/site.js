@@ -6,6 +6,7 @@ const SEMIL_CONFIG={ formEndpoint:"", aiEndpoint:"" }; // set to a secure form s
 const SEMIL={
   company:{name:"Semil Retail Industries Private Limited",short:"Semil",cin:"U47912TZ2025PTC035227",incorporated:"4 July 2025",
     address:["101/57 A, Kalidhasar Street","Narayanan Nagar, Salem","Tamil Nadu 636015, India"],
+    email:"admin@semilindustries.com",
     verified:{address:true,cin:true,incorporation:true,designations:true}},
   statuses:{
     tbc:{label:"Status to be confirmed",cls:"tbc"},
@@ -209,7 +210,7 @@ function buildFooter(){
     <div><a class="logo" href="${url('index.html')}">${monoSvg()}SEMIL</a><p style="margin-top:18px;max-width:30ch;font-size:14.5px">Building Today for a Brighter Tomorrow.</p><p style="margin-top:14px;font-size:13px;color:#8FA2C9">ONE COMPANY. MANY POSSIBILITIES.</p></div>
     <div><h5>Explore</h5><ul>${NAV.filter(n=>!n[3]).map(n=>`<li><a href="${url(n[2])}">${n[1]}</a></li>`).join('')}<li><a href="${url('company.html')}">Company details</a></li></ul></div>
     <div><h5>Businesses</h5><ul>${SEMIL.businesses.map(b=>`<li><a href="${url(b.href)}">${esc(b.name)}</a></li>`).join('')}<li><a href="https://neutags.com" target="_blank" rel="noopener">neutags.com ↗</a></li></ul></div>
-    <div><h5>Registered office</h5><address><b style="color:#fff">${esc(c.name)}</b><br>${c.address.map(esc).join('<br>')}${v.address?'':'<br><span class="tag-ver" style="margin-top:8px">Pending verification</span>'}<br><span style="font-size:13px;color:#8FA2C9">Official email: to be supplied</span></address></div>
+    <div><h5>Registered office</h5><address><b style="color:#fff">${esc(c.name)}</b><br>${c.address.map(esc).join('<br>')}${v.address?'':'<br><span class="tag-ver" style="margin-top:8px">Pending verification</span>'}<br><span style="font-size:13px;color:#8FA2C9">Official email: <a href="mailto:${esc(c.email)}" style="color:#8FA2C9;text-decoration:underline">${esc(c.email)}</a></span></address></div>
   </div>
   <div class="fl"><span>© 2026 ${esc(c.name)}. All rights reserved.</span><span>CIN: ${esc(c.cin)}${v.cin?'':' (pending verification)'}</span><span><a href="${url('privacy.html')}">Privacy policy</a> · <a href="${url('terms.html')}">Terms and conditions</a></span></div></div>`;
   document.body.appendChild(f);
@@ -316,7 +317,7 @@ const MOUNT={
       <dl class="kv" style="margin-top:28px"><dt>Role</dt><dd>${esc(d.role)} of ${esc(SEMIL.company.short)}</dd><dt>Appointed</dt><dd>${d.appointed?esc(d.appointed):'<span class="slate">Awaiting company records</span>'}</dd><dt>Areas of focus</dt><dd>${d.focus?esc(d.focus):'<span class="slate">Awaiting company approval</span>'}</dd><dt>Biography</dt><dd>${d.bio?esc(d.bio):'<span class="slate">Awaiting company approval</span>'}</dd></dl></div></article>`).join('');
   },
   corp(el){const c=SEMIL.company,v=c.verified;const t=x=>x?'':' <span class="tag-ver">Pending verification</span>';
-    el.innerHTML=`<dt>Company name</dt><dd>${esc(c.name)}</dd><dt>Type</dt><dd>Indian private limited company</dd><dt>Incorporated</dt><dd>${esc(c.incorporated)}${t(v.incorporation)}</dd><dt>CIN</dt><dd>${esc(c.cin)}${t(v.cin)}</dd><dt>Registered office</dt><dd>${c.address.map(esc).join(', ')}${t(v.address)}</dd>`},
+    el.innerHTML=`<dt>Company name</dt><dd>${esc(c.name)}</dd><dt>Type</dt><dd>Indian private limited company</dd><dt>Incorporated</dt><dd>${esc(c.incorporated)}${t(v.incorporation)}</dd><dt>CIN</dt><dd>${esc(c.cin)}${t(v.cin)}</dd><dt>Registered office</dt><dd>${c.address.map(esc).join(', ')}${t(v.address)}</dd><dt>Official email</dt><dd><a href="mailto:${esc(c.email)}" style="color:var(--cobalt);font-weight:600">${esc(c.email)}</a></dd>`},
   focus(el){
     el.className='cols3';el.innerHTML=[["Digital commerce","Neutags, a multi-vendor marketplace.","neutags"],["Food & technology","A planned food delivery platform.","food"],["Matchmaking","A planned matrimonial platform.","matrimony"],["Logistics","A logistics initiative covering delivery, transport and supply chains.","logistics"],["Financial technology","A proposed payment initiative, subject to regulatory approvals.","payments"]].map(f=>`<a class="tile glow" style="text-decoration:none" href="${url(biz(f[2]).href)}"><h4>${f[0]}</h4><p>${f[1]}</p><p style="margin-top:12px">${badge(biz(f[2]).status)}</p></a>`).join('');
   },

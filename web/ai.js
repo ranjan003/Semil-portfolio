@@ -38,7 +38,7 @@ const KB=[];
   add('values','Core values',S.values.map(v=>v[0]+': '+v[1]).join(' '),'about.html');
   add('time','Company timeline',S.timeline.map(t=>t.d+': '+t.t+(t.p?'. '+t.p:'')).join(' '),'about.html');
   add('road','Roadmap',S.roadmap.map(r=>r.stage+': '+(r.items.length?r.items.map(i=>i.n).join(', '):'nothing confirmed yet')).join('. '),'upcoming-projects.html');
-  add('contact','Contact',`Registered office: ${c.address.join(', ')}. The official email is to be supplied. Enquiries can be sent through the contact form.`,'contact.html');
+  add('contact','Contact',`Registered office: ${c.address.join(', ')}. The official email is admin@semilindustries.com. Enquiries can also be sent through the contact form.`,'contact.html');
 })();
 const STOP=new Set('a an the is are was were be to of in on for and or with what who how do does did can i me my you your it its this that about tell please semil s at as by from have has will would should about any there their'.split(' '));
 const tok=s=>(s.toLowerCase().match(/[a-z0-9]+/g)||[]).filter(w=>!STOP.has(w)).map(w=>w.replace(/(ing|ed|es|s)$/,''));
@@ -117,7 +117,7 @@ function answer(q){
   if(/director|founder|leadership|who (runs|owns|leads|manages)|\bteam\b|management/.test(l)&&!ids.length)
     return finish(done({html:`<p>Semil is led by its directors:</p>`+R.list(S.directors.map(d=>`<b>${esc(d.name)}</b>, ${esc(d.role)}`))+`<p class="sai-note">Biographies, appointment dates and portraits are published only once the company supplies and approves them, so I have nothing more to add.</p>`,src:[{t:'Leadership',h:'leadership.html'}],tr:['Specialist: directors tool'],chips:['Company details','Core values']},'directors'));
   if(/address|office|where (is|are)|located|location|email|e-mail|phone|call you/.test(l)&&!ids.length)
-    return finish(done({html:`<p>Registered office:</p><p><b>${S.company.address.map(esc).join('<br>')}</b></p><p>The official email address is still to be supplied. You can use the contact form for now.</p>`,src:[{t:'Contact',h:'contact.html'}],tr:['Specialist: contact lookup'],chips:['Send an enquiry']},'contact'));
+    return finish(done({html:`<p>Registered office:</p><p><b>${S.company.address.map(esc).join('<br>')}</b></p><p>Official email: <b><a href="mailto:admin@semilindustries.com">admin@semilindustries.com</a></b></p>`,src:[{t:'Contact',h:'contact.html'}],tr:['Specialist: contact lookup'],chips:['Send an enquiry']},'contact'));
   if(/enquir|get in touch|contact (us|semil)|partner(ship)? with|become a (seller|partner)|apply|register (my )?interest|send (a )?message|reach out|i (run|own|have) a (restaurant|business|shop|store)|sell on/.test(l)){
     const cat=ids.includes('neutags')?'Seller or merchant enquiry':ids.includes('payments')?'Technology partnership':/career|job|apply/.test(l)?'Careers':'Business partnership';
     return finish(done({html:`<p>Happy to help. Fill this in and review it before sending.</p>`+R.enquiry(cat),tr:['Tool: submit_enquiry (asks you to confirm; nothing is sent automatically)'],chips:[]},'enquiry'));}

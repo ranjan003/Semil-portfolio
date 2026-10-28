@@ -49,6 +49,7 @@ def page(path, key, title, desc, body, crumbs=None, three=False, main_artifact=F
       "name": "Semil Retail Industries Private Limited",
       "alternateName": "Semil",
       "url": "https://semil.in",
+      "email": "admin@semilindustries.com",
       "logo": "https://semil.in/logo.png",
       "description": "Building a diverse ecosystem of businesses across digital commerce, food delivery, matchmaking, logistics and financial technology.",
       "address": {{
@@ -212,7 +213,7 @@ page("careers.html", "careers", "Careers", "Build with Semil. Confirmed openings
 # ---------------- CONTACT ----------------
 contact = hero("Contact and partnerships", "Let's <span class='grad'>connect.</span>", "Businesses, sellers, restaurants, logistics providers, technology providers and prospective partners are welcome to start a conversation.") + f'''
 <section class="sec" style="padding-top:0"><div class="wrap"><div class="contactgrid"><div><p class="eyebrow">Enquiry type</p><div class="cats">{''.join(f'<button type="button" data-cat="{c}" aria-pressed="false">{c}<span>→</span></button>' for c in ["General corporate enquiry","Business partnership","Technology partnership","Seller or merchant enquiry","Careers","Other enquiries"])}</div>
-<div style="margin-top:36px"><p class="eyebrow">Registered office</p><dl class="kv" data-mount="corp"></dl><p class="slate" style="margin-top:14px;font-size:14px">Official email: to be supplied.</p></div></div>
+<div style="margin-top:36px"><p class="eyebrow">Registered office</p><dl class="kv" data-mount="corp"></dl><p class="slate" style="margin-top:14px;font-size:14px">Official email: <a href="mailto:admin@semilindustries.com" style="color:var(--cobalt);font-weight:600">admin@semilindustries.com</a></p></div></div>
 <div class="formcard"><form data-form="contact" novalidate><div class="two"><div class="f"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required maxlength="80"><div class="err"></div></div><div class="f"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required maxlength="120"><div class="err"></div></div></div>
 <div class="two"><div class="f"><label for="f-org">Company (optional)</label><input id="f-org" name="org" autocomplete="organization" maxlength="120"><div class="err"></div></div><div class="f"><label for="f-cat">Enquiry type</label><select id="f-cat" name="category" required><option value="">Select a type</option><option>General corporate enquiry</option><option>Business partnership</option><option>Technology partnership</option><option>Seller or merchant enquiry</option><option>Careers</option><option>Other enquiries</option></select><div class="err"></div></div></div>
 <div class="f"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required maxlength="1500"></textarea><div class="err"></div></div>{FORM_HP}<div class="fstat" role="status" aria-live="polite"></div>
