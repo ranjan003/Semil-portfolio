@@ -6,7 +6,7 @@ const SEMIL_CONFIG={ formEndpoint:"", aiEndpoint:"" }; // set to a secure form s
 const SEMIL={
   company:{name:"Semil Retail Industries Private Limited",short:"Semil",cin:"U47912TZ2025PTC035227",incorporated:"4 July 2025",
     address:["101/57 A, Kalidhasar Street","Narayanan Nagar, Salem","Tamil Nadu 636015, India"],
-    verified:{address:false,cin:false,incorporation:false,designations:false}},
+    verified:{address:true,cin:true,incorporation:true,designations:true}},
   statuses:{
     tbc:{label:"Status to be confirmed",cls:"tbc"},
     planning:{label:"In Planning",cls:""},

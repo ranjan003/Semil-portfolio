@@ -173,7 +173,7 @@ bizpage("businesses/matrimony.html","business-matrimony","matrimony","Semil Matr
 bizpage("businesses/logistics.html","business-logistics","logistics","Semil Logistical Services",'[["Businesses","businesses.html"],["Semil Logistical Services","businesses/logistics.html"]]')
 
 # ---------------- COMPANY ----------------
-comp = hero("Company details", "Everything we can <span class='grad'>state, in one place.</span>", "Registered details, directors, businesses and projects. Anything not yet verified is tagged.") + """
+comp = hero("Company details", "Everything we can <span class='grad'>state, in one place.</span>", "Registered details, directors, businesses and projects.") + """
 <section class="sec" style="padding-top:0"><div class="wrap"><p class="eyebrow rv">Registered details</p><dl class="kv" data-mount="corp"></dl></div></section>
 <section class="sec alt"><div class="wrap"><p class="eyebrow rv">Directors</p><div data-mount="people"></div></div></section>
 <section class="sec"><div class="wrap"><p class="eyebrow rv">Businesses and projects</p><div data-mount="focus" style="margin-top:20px"></div></div></section>
